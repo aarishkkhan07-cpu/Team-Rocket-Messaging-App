@@ -1,20 +1,57 @@
 <!DOCTYPE html>
-<html lang"en">
-    <head>
-        <title>Team Rocket Messaging app</title>
-        <link rel="stylesheet" href="login.css">
-        <script src="login.js" defer></script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Rocket Messaging App</title>
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><span class="logo">&#128172;</span> Team Rocket Messaging App</div>
+  <div id="barRight" class="tag">Simple, direct messaging</div>
+</header>
 
-    </head>
-    <body>
-        <header class="topbar">
-            <a href="/" class="brand">
-                <span class="brand-icon"></span>
-                <span>Team Rocket Messaging app</span>
-            </a>
-            <span class="tagline">Simple,direct Messaging</span>
-        </header>
+<main>
+  <section id="login" class="card narrow">
+    <h1>Welcome back</h1><p class="sub">Log in to start a conversation.</p>
+    <label for="lu">Username</label><input id="lu" autocomplete="username">
+    <label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password">
+    <div id="lmsg" class="note" hidden></div>
+    <button id="loginBtn" class="primary">Login</button>
+    <button id="toRegister" class="ghost">Create Account</button>
+  </section>
 
+  <section id="register" class="card narrow" hidden>
+    <h1>Create your account</h1><p class="sub">Choose a username and password to get started.</p>
+    <label for="ru">Username</label><input id="ru" autocomplete="username">
+    <label for="rp">Password</label><input id="rp" type="password" autocomplete="new-password">
+    <label for="rc">Confirm Password</label><input id="rc" type="password" autocomplete="new-password">
+    <div id="rmsg" class="note" hidden></div>
+    <button id="registerBtn" class="primary">Create Account</button>
+    <button id="toLogin" class="ghost">Back to Login</button>
+  </section>
 
-    </body>
-    </html>
+  <section id="users" class="wide" hidden>
+    <h1>Choose someone to message</h1><p class="sub">Select a registered user, then open your conversation.</p>
+    <div class="list">
+      <div class="list-head"><strong>Registered users</strong><span id="count" class="tag"></span></div>
+      <input id="search" class="search" placeholder="Search users..." aria-label="Search users">
+      <ul id="userList"></ul>
+    </div>
+    <div class="row"><span id="selected" class="tag">No user selected</span>
+      <button id="openBtn" class="primary" disabled>Open Conversation</button></div>
+  </section>
+
+  <section id="chat" class="wide" hidden>
+    <div class="chat-head"><button id="backBtn" class="ghost small">Back</button>
+      <div><h2 id="chatName"></h2><span class="tag">Direct conversation</span></div></div>
+    <div id="thread" class="thread" aria-live="polite"></div>
+    <form id="sendForm" class="row"><input id="body" placeholder="Type a message..." maxlength="1000" autocomplete="off">
+      <button class="primary" type="submit">Send</button></form>
+  </section>
+</main>
+<footer class="bar foot"><span id="where">Login</span><span>Team Rocket &middot; Direct messaging</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
