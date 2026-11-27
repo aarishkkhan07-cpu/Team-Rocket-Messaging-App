@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Select User - Team Rocket</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- Header -->
+
+    <header class="app-header">
+
+        <div class="brand-section">
+
+            <div class="brand-icon">
+                <span>▢</span>
+            </div>
+
+            <div class="brand-name">
+                Team Rocket Messaging App
+            </div>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <span class="logged-in-text">
+                Logged in as <strong id="currentUsername">User</strong>
+            </span>
+
+            <button
+                    class="header-logout"
+                    id="logoutButton">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+
+    <main class="main-content users-page">
+
+        <div class="users-container">
+
+
+            <div class="page-heading">
+
+                <h1>
+                    Choose someone to message
+                </h1>
+
+                <p>
+                    Select a registered user, then open your conversation.
+                </p>
+
+            </div>
+
+
+            <div class="users-card">
+
+
+                <!-- List Header -->
+
+                <div class="users-list-header">
+
+                    <strong>
+                        Registered users
+                    </strong>
+
+                    <span id="userCount">
+                        0 users
+                    </span>
+
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="search-container">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+                    <input
+                            type="text"
+                            id="searchUsers"
+                            placeholder="Search users..."
+                    >
+
+                </div>
+
+
+                <!-- User List -->
+
+                <div
+                        class="user-list"
+                        id="userList">
+
+                    <!-- Users will be loaded here -->
+
+                    <div class="loading-users">
+                        Loading users...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom Action -->
+
+            <div class="user-selection-footer">
+
+                <div
+                        class="selected-user-label"
+                        id="selectedUserLabel">
+
+                    Select a user
+
+                </div>
+
+
+                <button
+                        id="openConversationButton"
+                        class="btn btn-primary open-conversation-btn"
+                        disabled>
+
+                    Open Conversation
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="app-footer">
+
+        <span>User selection</span>
+
+        <span>Team Rocket · Direct messaging</span>
+
+    </footer>
+
+
+</div>
+
+
+<script src="js/users.js"></script>
+
+</body>
+
+</html>

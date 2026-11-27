@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account - Team Rocket</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- Header -->
+
+    <header class="app-header">
+
+        <div class="brand-section">
+
+            <div class="brand-icon">
+                <span>▢</span>
+            </div>
+
+            <div class="brand-name">
+                Team Rocket Messaging App
+            </div>
+
+        </div>
+
+
+        <div class="header-description">
+            Simple, direct messaging
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+
+    <main class="main-content register-page">
+
+        <div class="auth-card register-card">
+
+            <h1>Create your account</h1>
+
+            <p class="auth-subtitle">
+                Choose a username and password to get started.
+            </p>
+
+
+            <!-- Success -->
+
+            <div
+                    id="registerSuccess"
+                    class="message-box success-message hidden"
+            >
+
+                <span class="message-icon">✓</span>
+
+                <span>
+                    Account created. You can now return to login.
+                </span>
+
+            </div>
+
+
+            <!-- Error -->
+
+            <div
+                    id="registerError"
+                    class="message-box error-message hidden"
+            >
+
+                <span class="message-icon">!</span>
+
+                <span id="registerErrorText"></span>
+
+            </div>
+
+
+            <form id="registerForm">
+
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            required
+                    >
+
+                </div>
+
+
+                <button
+                        type="submit"
+                        class="btn btn-primary btn-full"
+                        id="registerButton">
+
+                    Create Account
+
+                </button>
+
+
+                <button
+                        type="button"
+                        class="btn btn-secondary btn-full"
+                        onclick="window.location.href='index.html'">
+
+                    Back to Login
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="app-footer">
+
+        <span>Create account</span>
+
+        <span>Team Rocket · Direct messaging</span>
+
+    </footer>
+
+
+</div>
+
+
+<script src="js/register.js"></script>
+
+</body>
+
+</html>

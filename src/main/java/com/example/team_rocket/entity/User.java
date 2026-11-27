@@ -23,8 +23,8 @@ public class User {
     private Long id;
 
     @Column(
-        nullable=false
-        unique= true
+        nullable = false,
+        unique = true,
         length = 50
     )
     private String username;
