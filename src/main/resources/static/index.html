@@ -1,139 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Team Rocket Messaging App</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
 <div class="app-shell">
-
-    <!-- Header -->
     <header class="app-header">
-
         <div class="brand-section">
-
-            <div class="brand-icon">
-                <span>▢</span>
-            </div>
-
-            <div class="brand-name">
-                Team Rocket Messaging App
-            </div>
-
+            <div class="brand-icon"><span>▢</span></div>
+            <div class="brand-name">Team Rocket Messaging App</div>
         </div>
-
-        <div class="header-description">
-            Simple, direct messaging
-        </div>
-
+        <div class="header-description">Simple, direct messaging</div>
     </header>
 
-
-    <!-- Main -->
     <main class="main-content login-page">
-
         <div class="auth-card">
-
             <h1>Welcome back</h1>
-
-            <p class="auth-subtitle">
-                Log in to start a conversation.
-            </p>
-
+            <p class="auth-subtitle">Log in to start a conversation.</p>
 
             <div id="loginError" class="message-box error-message hidden">
                 <span class="message-icon">!</span>
-                <span id="loginErrorText">
-                    Incorrect username or password. Please try again.
-                </span>
+                <span id="loginErrorText"></span>
             </div>
 
-
             <form id="loginForm">
-
                 <div class="form-group">
-
-                    <label for="username">
-                        Username
-                    </label>
-
-                    <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            placeholder=""
-                            autocomplete="username"
-                            required
-                    >
-
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"
+                           autocomplete="username" required>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
-                    <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder=""
-                            autocomplete="current-password"
-                            required
-                    >
-
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                           autocomplete="current-password" required>
                 </div>
 
+                <button type="submit" class="btn btn-primary btn-full"
+                        id="loginButton">Login</button>
 
-                <button
-                        type="submit"
-                        class="btn btn-primary btn-full"
-                        id="loginButton">
-
-                    Login
-
-                </button>
-
-
-                <button
-                        type="button"
-                        class="btn btn-secondary btn-full"
+                <button type="button" class="btn btn-secondary btn-full"
                         onclick="window.location.href='register.html'">
-
                     Create Account
-
                 </button>
-
             </form>
-
         </div>
-
     </main>
 
-
-    <!-- Footer -->
     <footer class="app-footer">
-
         <span>Login</span>
-
         <span>Team Rocket · Direct messaging</span>
-
     </footer>
-
 </div>
 
-
 <script src="js/login.js"></script>
-
 </body>
-
 </html>

@@ -1,22 +1,15 @@
 package com.example.team_rocket.config;
 
 
-import com.example.team_rocket.messaging.security.JwtAuthenticationFilter;
-
+import com.example.team_rocket.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
 import org.springframework.security.config.http.SessionCreationPolicy;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.security.web.SecurityFilterChain;
-
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -25,109 +18,66 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
-    public SecurityFilterChain securityFilterChain(
-            HttpSecurity http
-    )
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
 
-
         http
+            .csrf(csrf -> csrf.disable())
 
-                /*
-                 * JWT authentication is stateless.
-                 */
-                .csrf(
-                        csrf ->
-                                csrf.disable()
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
                 )
+            )
 
+            .authorizeHttpRequests(auth -> auth
 
-                .sessionManagement(
-                        session ->
-                                session.sessionCreationPolicy(
-                                        SessionCreationPolicy.STATELESS
-                                )
+                // Public authentication APIs
+                .requestMatchers(
+                    "/api/auth/register",
+                    "/api/auth/login"
+                ).permitAll()
+
+                // Public frontend pages
+                .requestMatchers(
+                    "/",
+                    "/index.html",
+                    "/register.html",
+                    "/users.html",
+                    "/conversation.html"
+                ).permitAll()
+
+                // CSS and JavaScript
+                .requestMatchers(
+                    "/css/**",
+                    "/js/**"
+                ).permitAll()
+
+                // H2 console
+                .requestMatchers(
+                    "/h2-console/**"
+                ).permitAll()
+
+                // Everything else requires JWT
+                .anyRequest().authenticated()
+            )
+
+            .headers(headers ->
+                headers.frameOptions(frame ->
+                    frame.sameOrigin()
                 )
+            )
 
-
-                .authorizeHttpRequests(
-                        auth ->
-                                auth
-
-                                        /*
-                                         * Authentication APIs
-                                         */
-                                        .requestMatchers(
-                                                "/api/auth/register",
-                                                "/api/auth/login"
-                                        )
-                                        .permitAll()
-
-
-                                        /*
-                                         * Frontend
-                                         */
-                                        .requestMatchers(
-                                                "/",
-                                                "/index.html",
-                                                "/register.html",
-                                                "/users.html",
-                                                "/css/**",
-                                                "/js/**"
-                                        )
-                                        .permitAll()
-
-
-                                        /*
-                                         * H2 Console
-                                         */
-                                        .requestMatchers(
-                                                "/h2-console/**"
-                                        )
-                                        .permitAll()
-
-
-                                        /*
-                                         * Everything else
-                                         * requires JWT.
-                                         */
-                                        .anyRequest()
-                                        .authenticated()
-                )
-
-
-                /*
-                 * Allow H2 console iframe.
-                 */
-                .headers(
-                        headers ->
-                                headers.frameOptions(
-                                        frame ->
-                                                frame.sameOrigin()
-                                )
-                )
-
-
-                /*
-                 * Execute JWT filter before
-                 * Spring's username/password filter.
-                 */
-                .addFilterBefore(
-
-                        jwtAuthenticationFilter,
-
-                        UsernamePasswordAuthenticationFilter.class
-                );
-
+            .addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter.class
+            );
 
         return http.build();
     }
